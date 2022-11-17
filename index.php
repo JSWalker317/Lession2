@@ -1,6 +1,7 @@
 <?php
 
 require './Core/Database.php';
+require './Models/BaseModel.php';
 require './Controllers/BaseController.php';
 // ucfirts : Viet hoa chu dau trong productController
 // strtolower viet thuong con lai

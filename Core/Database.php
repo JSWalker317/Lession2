@@ -2,19 +2,20 @@
 
 class Database
 {
-    const HOST = 'localhost';
-    const USERNAME = 'postgres';
-    const PASSWORD = '123456';
+    const HOST = '127.0.0.1';
+    const USERNAME = 'root';
+    const PASSWORD = '';
     const DB_NAME = 'lession2';
-    const OPTIONS ='--client_encoding=UTF8';
+    // const OPTIONS ='--client_encoding=UTF8';
 
-    private $connect;
 
     public function connect(){
-        $this->connect = pg_connect(self::HOST, self::OPTIONS, self::USERNAME,
+        $connect = mysqli_connect(self::HOST, self::USERNAME,
             self::PASSWORD, self::DB_NAME);
-        // if(pg_connect_error() === 0) {
-        //     return $this->connect;
-        // }
+        mysqli_set_charset($connect, "utf8");
+        if(mysqli_connect_errno() === 0) {
+            return $connect;
+        }
+        return false;
     }
 }

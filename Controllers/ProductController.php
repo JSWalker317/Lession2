@@ -9,22 +9,11 @@ class ProductController extends BaseController
         $this->product = new Product();
     }
     public function index(){
-        $productName = $this->product->getProductName(1);
-
-        $products = [
-            [   
-                'id' => 1,
-                'name' => 'ip'
-            ],
-            [
-                'id' => 2,
-                'name' => 'and'
-            ],
-        ];
+        $products = $this->product->getAll(Product::TABLE);
 
         return $this->view('products.index', [
             'product' => $products,
-            'productName' => $productName,
+            // 'productName' => $productName,
         ]);
     }
 
