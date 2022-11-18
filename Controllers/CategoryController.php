@@ -10,9 +10,10 @@ class CategoryController extends BaseController
 
     public function index(){
         $categories = $this->category->getAll(Category::TABLE);
-
-        return $this->view('categories.index', [
+        $content = 'categories.index';
+        return $this->view('pages.categoryblade', [
             'category' => $categories,
+            'content' => $content,
             // 'productName' => $productName,
         ]);
     }

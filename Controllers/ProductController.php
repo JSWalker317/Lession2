@@ -11,20 +11,22 @@ class ProductController extends BaseController
     // getAll, findbyid, them, sua,xoa, phan trang, tim kiem theo ten san pham, phan muc
     public function index(){
         $products = $this->product->getAll();
-
-        return $this->view('products.index', [
+        $content = 'products.index';
+        // $show = 'products.show';
+        return $this->view('layouts.indexblade', [
             'product' => $products,
-            // 'productName' => $productName,
+            'content' => $content,
+            // 'show' => $show,
         ]);
     }
 
     public function show($id){
-        
-        $products = $this->product->findById($id);
+        return $this->product->findById($id);
+        // $products = $this->product->findById($id);
 
-        return $this->view('products.show', [
-            'product' => $products,
-        ]);
+        // return $this->view('products.show', [
+        //     'product' => $products,
+        // ]);
       
     }
 
@@ -42,9 +44,9 @@ class ProductController extends BaseController
 
     public function update($id){
         $data = [
-            'product_name' => 'iPhone 14',
+            'product_name' => 'iPhone 1',
             'category_id' => '1',
-            'product_image' => 'image14'
+            'product_image' => 'image1'
         ];
 
         $this->product->updateById($id, $data);

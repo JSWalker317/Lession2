@@ -1,5 +1,8 @@
 <?php
 
+// define('APPROOT',dirname(dirname(__FILE__)));
+define('URLROOT','http://localhost/');
+define('IMAGE', 'http://localhost/public/img');
 require './Core/Database.php';
 require './Models/BaseModel.php';
 require './Controllers/BaseController.php';
