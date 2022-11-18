@@ -8,8 +8,9 @@ class ProductController extends BaseController
         $this->loadModel('Product');
         $this->product = new Product();
     }
+    // getAll, findbyid, them, sua,xoa, phan trang, tim kiem theo ten san pham, phan muc
     public function index(){
-        $products = $this->product->getAll(Product::TABLE);
+        $products = $this->product->getAll();
 
         return $this->view('products.index', [
             'product' => $products,
@@ -17,28 +18,45 @@ class ProductController extends BaseController
         ]);
     }
 
-    public function show(){
-        return $this->view('products.show');
+    public function show($id){
+        
+        $products = $this->product->findById($id);
 
+        return $this->view('products.show', [
+            'product' => $products,
+        ]);
+      
     }
 
-    public function create(){
-        return $this->view('products.create');
-    }
     
     public function store(){
-        return $this->view('products.store');
+        $data = [
+            'product_name' => 'iPhone 13',
+            'category_id' => '1',
+            'product_image' => 'image13'
+        ];
+
+        $this->product->store($data);
+        // return $this->view('products.store');
     }
 
-    public function edit(){
-        return $this->view('products.edit');
+    public function update($id){
+        $data = [
+            'product_name' => 'iPhone 14',
+            'category_id' => '1',
+            'product_image' => 'image14'
+        ];
+
+        $this->product->updateById($id, $data);
+        // return $this->view('products.update');
     }
 
-    public function update(){
-        return $this->view('products.update');
-    }
+    public function destroy($id){
+         
+        $this->product->deleteById($id);
 
-    public function destroy(){
-        return $this->view('products.destroy');
+        // return $this->view('products.destroy', [
+        //     'id' => $id,
+        // ]);
     }
 }

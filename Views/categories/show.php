@@ -1,9 +1,9 @@
-<h1>show products</h1>
+<h1>show category</h1>
 <?php
 // print_r($productName) ;
 echo "<br/>";
 
-    foreach ($product as $key => $value)
+    foreach ($category as $key => $value)
     {
         echo "<br/>";
         foreach ($value as $key => $value)

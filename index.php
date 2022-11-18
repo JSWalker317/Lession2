@@ -7,9 +7,11 @@ require './Controllers/BaseController.php';
 // strtolower viet thuong con lai
 $controllerName = ucfirst((strtolower($_REQUEST['controller']) ?? 'Welcome') . 'Controller');
 $actionName = $_REQUEST['action'] ?? 'index';
+$id = $_REQUEST['id'] ?? '';
+
 
 // echo $controllerName;
 require "./Controllers/${controllerName}.php";
 // require './Controllers/CategoryController.php';
 $controllerObject = new $controllerName;
-$controllerObject->$actionName();
+$controllerObject->$actionName($id);
