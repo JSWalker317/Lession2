@@ -221,12 +221,12 @@
                     // 'product_id': product_id,
                 },
                 success: function (response) {
-                    // console.log(response);
-                    $.each(response, function (key, value) { 
+                    //  console.log(response['1']);
+                    $.each(response['0'], function (key, value) { 
                         // console.log(value['id']);
                         $('#view_pId').val(value['id']);
                         $('#view_pName').val(value['product_name']);
-                        $('#view_pCategory').val(value['category_id']);
+                        $('#view_pCategory').val(response['1']);
                         $('#view_pImage').val(value['product_image']);
                     });
                     $('#viewProductModal').modal('show');

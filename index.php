@@ -14,8 +14,17 @@ $id = $_REQUEST['id'] ?? '';
 
 
 // echo $controllerName;
+// if(file_exists(URLROOT.'Controllers/'.$controllerName.'.php')){
+    require "./Controllers/${controllerName}.php";
+    $controllerObject = new $controllerName;
+    $controllerObject->$actionName($id);
+// }
+// else {
+//     print('Page not found');
+//     echo URLROOT.'Controllers/'.$controllerName.'.php';
+// }
 
-require "./Controllers/${controllerName}.php";
+
+
+
 // require './Controllers/CategoryController.php';
-$controllerObject = new $controllerName;
-$controllerObject->$actionName($id);

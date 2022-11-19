@@ -25,15 +25,24 @@ class ProductController extends BaseController
         //      $pId = $_POST['product_id'];
             
         // }
-    
         $products = $this->product->findById($id);
         $products_arr = [];
-        foreach ($products as $key => $value)
+        $products_arr_final = [];
+        foreach ($products as $key => $valueP)
         {
-           
-            array_push($products_arr, $value);
+            $category_name = $this->getProductByCategoryId($valueP['category_id']);
+            foreach ($category_name as $key => $value) {
+                $dataString = implode(', ', $value);
+            }
+
+            // echo $valueP;
+            array_push($products_arr, $valueP);
+            array_push($products_arr_final, $products_arr);
+            array_push($products_arr_final, $dataString);
+
             header('Content-Type: application/json');
-            echo json_encode($products_arr);
+
+            echo json_encode($products_arr_final);
         }
       
     }
@@ -87,5 +96,10 @@ class ProductController extends BaseController
         // return $this->view('products.destroy', [
         //     'id' => $id,
         // ]);
+    }
+
+    public function getProductByCategoryId($categoryId){
+        $sql = "SELECT category_name FROM categories WHERE id=${categoryId}";
+        return $this->product->getByQuery($sql);
     }
 }

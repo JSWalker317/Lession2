@@ -102,6 +102,17 @@ class BaseModel extends Database
     
     }
 
+    public function getByQuery($sql){
+        $query = $this->_query($sql);
+        $data = [];
+        while($row = mysqli_fetch_assoc($query)) {
+            array_push($data, $row);
+        }
+
+        return $data;
+
+    }
+
     private function _query($sql){
         return mysqli_query($this->connect, $sql);
     }
