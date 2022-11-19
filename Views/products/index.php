@@ -250,7 +250,7 @@
                 success: function (response) {
                     // console.log(response);
                     // $('.product_view_data').html(response);
-                    $.each(response, function (key, value) { 
+                    $.each(response['0'], function (key, value) { 
                         // console.log(value['product_name']);
                         $('#edit_pId').val(value['id']);
                         $('#edit_pName').val(value['product_name']);
