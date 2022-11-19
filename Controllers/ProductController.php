@@ -13,7 +13,7 @@ class ProductController extends BaseController
         $products = $this->product->getAll();
         $content = 'products.index';
         // $show = 'products.show';
-        return $this->view('layouts.indexblade', [
+        return $this->view('pages.productblade', [
             'product' => $products,
             'content' => $content,
             // 'show' => $show,
