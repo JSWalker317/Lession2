@@ -8,8 +8,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-link" href="<?php echo URLROOT; ?>/?controller=product">Products</a>
-            <a class="nav-link" href="<?php echo URLROOT; ?>/?controller=category">Categories</a>
+            <a class="nav-link" href="<?php echo URLROOT; ?>?controller=product">Products</a>
+            <a class="nav-link" href="<?php echo URLROOT; ?>?controller=category">Categories</a>
         </div>
             
     </nav>

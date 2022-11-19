@@ -21,41 +21,68 @@ class ProductController extends BaseController
     }
 
     public function show($id){
-        return $this->product->findById($id);
-        // $products = $this->product->findById($id);
-
-        // return $this->view('products.show', [
-        //     'product' => $products,
-        // ]);
+        // if(isset($_POST['checking_viewBtn'])){
+        //      $pId = $_POST['product_id'];
+            
+        // }
+    
+        $products = $this->product->findById($id);
+        $products_arr = [];
+        foreach ($products as $key => $value)
+        {
+           
+            array_push($products_arr, $value);
+            header('Content-Type: application/json');
+            echo json_encode($products_arr);
+        }
       
     }
 
     
     public function store(){
-        $data = [
-            'product_name' => 'iPhone 13',
-            'category_id' => '1',
-            'product_image' => 'image13'
-        ];
+        if(isset($_POST['save_product'])){
+            $pName = $_POST['pName'];
+            $pCategory = $_POST['pCategory'];
+            $pImage = $_POST['pImage'];
+        
+            $data = [
+                'product_name' => $pName,
+                'category_id' =>  $pCategory,
+                'product_image' =>  $pImage
+            ];   
+        }
 
         $this->product->store($data);
+        header("Location: http://localhost/?controller=product&action=index");
         // return $this->view('products.store');
     }
 
-    public function update($id){
-        $data = [
-            'product_name' => 'iPhone 1',
-            'category_id' => '1',
-            'product_image' => 'image1'
-        ];
+    public function update(){
+        if(isset($_POST['update_product'])){
+            $pName = $_POST['pName'];
+            $pCategory = $_POST['pCategory'];
+            $pImage = $_POST['pImage'];
+            $pId = $_POST['pId'];
 
-        $this->product->updateById($id, $data);
+            $data = [
+                'product_name' => $pName,
+                'category_id' =>  $pCategory,
+                'product_image' =>  $pImage
+            ];   
+        }
+
+        $this->product->updateById($pId, $data);
+        header("Location: http://localhost/?controller=product&action=index");
+
         // return $this->view('products.update');
     }
 
-    public function destroy($id){
-         
-        $this->product->deleteById($id);
+    public function destroy(){
+        if(isset($_POST['delete_product'])){
+            $pId = $_POST['product_id'];
+        }
+        $this->product->deleteById($pId);
+        header("Location: http://localhost/?controller=product&action=index");
 
         // return $this->view('products.destroy', [
         //     'id' => $id,

@@ -45,20 +45,25 @@ class BaseModel extends Database
         
     }
     public function create($table, $data = []){
-        $columns = implode(', ', array_keys($data));
-        // chuyen value thanh dang string de luu vao db
-        $valueFinal = array_map(function($value) {
-            return "'" . $value . "'";
-        }, array_values($data));
-        $valueFinal = implode(', ', $valueFinal);
-        // print_r($valueFinal);
-        $sql = "INSERT INTO ${table} (${columns}) VALUES (${valueFinal})";
-        //  die($sql);
+        if($data != null){
+            $columns = implode(', ', array_keys($data));
+            // chuyen value thanh dang string de luu vao db
+            $valueFinal = array_map(function($value) {
+                return "'" . $value . "'";
+            }, array_values($data));
+            $valueFinal = implode(', ', $valueFinal);
+            // print_r($valueFinal);
+            $sql = "INSERT INTO ${table} (${columns}) VALUES (${valueFinal})";
+            //  die($sql);
 
-        $this->_query($sql);
-        // var_dump($query);
+            $this->_query($sql);
+            // var_dump($query);
 
-        return print('Created');
+            return print('Created');
+        }
+
+        return print('Not Created');
+        
     }
 
     public function update($table, $id, $data){
